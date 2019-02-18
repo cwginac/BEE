@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.1.0",
+  "iOS" : [
+    {
+      "name" : "Solar",
+      "hash" : "e7c75872540bc76795a7fe079f1ef43ec3c32c2d22938f4b427f90ea00153091"
+    }
+  ]
+}

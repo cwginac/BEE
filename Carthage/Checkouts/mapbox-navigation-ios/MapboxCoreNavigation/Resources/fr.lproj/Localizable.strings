@@ -1,0 +1,3 @@
+/* Inform developer an update is available */
+"UPDATE_AVAILABLE" = "Le SDK de Navigation Mapbox pour iOS version %@ est maintenant disponible.";
+

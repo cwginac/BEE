@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "3.4.10",
+  "iOS" : [
+    {
+      "name" : "MapboxNavigationNative",
+      "hash" : "4fadd0cb39e4bc172b89c86c37cc579ea941dcc3fd689058dfa8bc0fe1a58b7f"
+    }
+  ]
+}
