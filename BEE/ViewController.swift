@@ -72,7 +72,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDel
             
             // Add in rest of waypoints from the evacutation route.  If route is closed, this will just draw the entire closed route.
             for i in index..<evacuationRoute.count {
-                waypoints.append(Waypoint(coordinate: evacuationRoute[i], coordinateAccuracy: 100, name: ""))
+                waypoints.append(Waypoint(coordinate: evacuationRoute[i], coordinateAccuracy: 200, name: ""))
             }
             
             let options = NavigationRouteOptions(waypoints: waypoints, profileIdentifier: MBDirectionsProfileIdentifier.automobile)
@@ -163,41 +163,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDel
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>{
                     
                     // Get all alerts
-                    let alerts = jsonResult["alerts"] as? [Dictionary<String, AnyObject>]
+                    let alerts = jsonResult["events"] as? [Dictionary<String, AnyObject>]
                     // For each alert...
                     for alert in alerts! {
                         let severity = SeverityType(rawValue: (alert["severity"] as? String)!)
 
                         // Draw the alert zone
                         var coordinateValues: [CLLocationCoordinate2D] = []
-                        let coordinates = alert["boundaryCoordinates"] as? [Dictionary<String, AnyObject>]
+                        let coordinates = alert["boundaryPoints"] as? [Dictionary<String, AnyObject>]
                         for coordinate in coordinates! {
-                            coordinateValues.append(CLLocationCoordinate2DMake((coordinate["latitude"] as! NSString).doubleValue, (coordinate["longitude"] as! NSString).doubleValue))
+                            coordinateValues.append(CLLocationCoordinate2DMake(coordinate["latitude"] as! Double, coordinate["longitude"] as! Double))
                         }
                         // Must close polygon (to fix bug in MapBox framework where at closer zoom levels, polygons will not close themselves)
                         coordinateValues.append(coordinateValues[0])
-                        self.drawZones(coordinates: coordinateValues, alertSeverity: severity ?? SeverityType.None)
+                        self.drawZones(coordinates: coordinateValues, alertSeverity: severity ?? SeverityType.none)
                         
                         // Display Instructions
-                        let inUsersArea = (alert["inUsersArea"] as? NSString)?.boolValue
-                        if inUsersArea ?? false {
+                        let inUsersArea = alert["inUsersArea"] as? Bool ?? true
+                        if inUsersArea {
                             // Update header
-                            self.updateHeader(evac: severity ?? SeverityType.None)
+                            self.updateHeader(evac: severity ?? SeverityType.none)
                             self.g_instructions = alert["instructions"] as! String
                             self.showInstructions()
-                            self.g_evacId = alert["evacId"] as? String ?? ""
+                            self.g_evacId = alert["eventId"] as? String ?? ""
                         
                             // Get Evacuation Routes
                             var evacuationRoute: [CLLocationCoordinate2D] = []
                             var openRoutes: [[CLLocationCoordinate2D]] = []
                             var congestedRoutes: [[CLLocationCoordinate2D]] = []
                             var closedRoutes: [[CLLocationCoordinate2D]] = []
-                            let routes = alert["evacuationRoutes"] as? [Dictionary<String, AnyObject>]
+                            let routes = alert["routes"] as? [Dictionary<String, AnyObject>]
                             for route in routes! {
                                 let status = RouteStatus.init(rawValue: route["status"] as! String)
-                                let intersections = route["intersections"] as? [Dictionary<String, AnyObject>]
+                                let intersections = route["waypoints"] as? [Dictionary<String, AnyObject>]
                                 for intersection in intersections! {
-                                    evacuationRoute.append(CLLocationCoordinate2DMake((intersection["latitude"] as! NSString).doubleValue, (intersection["longitude"] as! NSString).doubleValue))
+                                    evacuationRoute.append(CLLocationCoordinate2DMake(intersection["latitude"] as! Double, intersection["longitude"] as! Double))
                                 }
                                 if status == RouteStatus.open {
                                     openRoutes.append(evacuationRoute)
@@ -217,18 +217,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDel
                         }
                     }
                     
-                    // Get all locations
-                    let locations = jsonResult["locations"] as? [Dictionary<String, AnyObject>]
-                    // For each event...
-                    for location in locations! {
-                        let type = LocationType(rawValue: (location["type"] as? String)!)
-                        let locationPoint = LocationPointAnnotation()
-                        locationPoint.typeOfLocation = type!
-                        locationPoint.coordinate = CLLocationCoordinate2DMake((location["coordinates"]!["latitude"] as! NSString).doubleValue, (location["coordinates"]!["longitude"] as! NSString).doubleValue)
-                        locationPoint.title = location["name"] as? String
-                        locationPoint.subtitle = location["information"] as? String ?? ""
-                        self.mapView.addAnnotation(locationPoint)
-                    }
+//                    // Get all locations
+//                    let locations = jsonResult["locations"] as? [Dictionary<String, AnyObject>]
+//                    // For each event...
+//                    for location in locations! {
+//                        let type = LocationType(rawValue: (location["type"] as? String)!)
+//                        let locationPoint = LocationPointAnnotation()
+//                        locationPoint.typeOfLocation = type!
+//                        locationPoint.coordinate = CLLocationCoordinate2DMake((location["coordinates"]!["latitude"] as! NSString).doubleValue, (location["coordinates"]!["longitude"] as! NSString).doubleValue)
+//                        locationPoint.title = location["name"] as? String
+//                        locationPoint.subtitle = location["information"] as? String ?? ""
+//                        self.mapView.addAnnotation(locationPoint)
+//                    }
                     
                 }
             } catch {
@@ -251,11 +251,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDel
         var identifier: String = ""
         var color: UIColor = #colorLiteral(red: 0.6268994808, green: 0.02138105221, blue: 0.0009170532576, alpha: 1)
         
-        if alertSeverity == SeverityType.Order {
+        if alertSeverity == SeverityType.order {
             identifier = "order"
             color = #colorLiteral(red: 0.6274509804, green: 0.01960784314, blue: 0, alpha: 1)
         }
-        else if alertSeverity == SeverityType.Warning {
+        else if alertSeverity == SeverityType.warning {
             identifier = "warning"
             color = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         }
@@ -428,19 +428,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDel
     }
     
     func updateHeader(evac: SeverityType) {
-        if evac == SeverityType.Order {
+        if evac == SeverityType.order {
             self.view.backgroundColor = #colorLiteral(red: 0.6268994808, green: 0.02138105221, blue: 0.0009170532576, alpha: 1)
             self.evacType.text = "⚠︎ Evacuation Order\nissued for:"
             self.evacType.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             self.locationLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         }
-        else if evac == SeverityType.Warning {
+        else if evac == SeverityType.warning {
             self.view.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
             self.evacType.text = "⚠︎ Evacuation Warning\nissued for:"
             self.evacType.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             self.locationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         }
-        else if evac == SeverityType.None {
+        else if evac == SeverityType.none {
             self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             self.evacType.text = "No Alerts\nissued for:"
             self.evacType.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -449,9 +449,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDel
     }
     
     enum SeverityType: String {
-        case Order
-        case Warning
-        case None
+        case order
+        case warning
+        case none
     }
     
     enum LocationType: String {
