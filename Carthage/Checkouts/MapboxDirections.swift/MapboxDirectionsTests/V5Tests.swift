@@ -42,6 +42,10 @@ class V5Tests: XCTestCase {
         options.includesSteps = true
         options.includesAlternativeRoutes = true
         options.routeShapeResolution = .full
+        options.includesVisualInstructions = true
+        options.includesSpokenInstructions = true
+        options.locale = Locale(identifier: "en_US")
+        options.includesExitRoundaboutManeuver = true
         var route: Route?
         let task = Directions(accessToken: BogusToken).calculate(options) { (waypoints, routes, error) in
             XCTAssertNil(error, "Error: \(error!)")
@@ -59,91 +63,94 @@ class V5Tests: XCTestCase {
             XCTAssertEqual(task.state, .completed)
         }
         
+        test(route, options: options)
+    }
+    
+    func test(_ route: Route?, options: RouteOptions) {
         XCTAssertNotNil(route)
-        XCTAssertNotNil(route!.coordinates)
-        XCTAssertEqual(route!.coordinates!.count, 28_442)
-        XCTAssertEqual(route!.accessToken, BogusToken)
-        XCTAssertEqual(route!.apiEndpoint, URL(string: "https://api.mapbox.com"))
-        XCTAssertEqual(route!.routeIdentifier, "cj725hpi30yp2ztm2ehbcipmh")
-        XCTAssertEqual(route!.speechLocale!.identifier, "en-US")
+        guard let route = route else {
+            return
+        }
         
+        XCTAssertNotNil(route.coordinates)
+        XCTAssertEqual(route.coordinates?.count, 30_097)
+        XCTAssertEqual(route.accessToken, BogusToken)
+        XCTAssertEqual(route.apiEndpoint, URL(string: "https://api.mapbox.com"))
+        XCTAssertEqual(route.routeIdentifier?.count, 25)
+        XCTAssertTrue(route.routeIdentifier?.starts(with: "cjsb5x") ?? false)
+        XCTAssertEqual(route.speechLocale?.identifier, "en-US")
         
         // confirming actual decoded values is important because the Directions API
         // uses an atypical precision level for polyline encoding
-        XCTAssertEqual(round(route!.coordinates!.first!.latitude), 38)
-        XCTAssertEqual(round(route!.coordinates!.first!.longitude), -122)
-        XCTAssertEqual(route!.legs.count, 1)
+        XCTAssertEqual(route.coordinates?.first?.latitude ?? 0, 38, accuracy: 1)
+        XCTAssertEqual(route.coordinates?.first?.longitude ?? 0, -122, accuracy: 1)
+        XCTAssertEqual(route.legs.count, 1)
         
-        let opts = route!.routeOptions
+        let opts = route.routeOptions
         XCTAssertEqual(opts, options)
         
-        let leg = route!.legs.first!
-        XCTAssertEqual(leg.name, "I 80, I 80;US 30")
-        XCTAssertEqual(leg.steps.count, 59)
+        let leg = route.legs.first
+        XCTAssertEqual(leg?.name, "Dwight D. Eisenhower Highway, I-80")
+        XCTAssertEqual(leg?.steps.count, 59)
         
-        let firstStep = leg.steps.first
-        XCTAssertNotNil(firstStep)
-        let firstStepIntersections = firstStep?.intersections
-        XCTAssertNotNil(firstStepIntersections)
-        let firstIntersection = firstStepIntersections?.first
-        XCTAssertNotNil(firstIntersection)
-        let roadClasses = firstIntersection?.outletRoadClasses
+        // The Carquinez Bridge is tolled.
+        let tolledStep = leg?.steps[5]
+        let tolledStepIntersections = tolledStep?.intersections
+        XCTAssertNotNil(tolledStepIntersections)
+        let tolledIntersection = tolledStepIntersections?[38]
+        let roadClasses = tolledIntersection?.outletRoadClasses
         XCTAssertNotNil(roadClasses)
-        XCTAssertTrue(roadClasses?.contains([.toll, .restricted]) ?? false)
+        XCTAssertEqual(roadClasses, [.toll, .motorway])
         
-        let step = leg.steps[43]
-        XCTAssertEqual(round(step.distance), 688)
-        XCTAssertEqual(round(step.expectedTravelTime), 30)
-        XCTAssertEqual(step.instructions, "Take the ramp on the right towards Washington")
+        let step = leg?.steps[48]
+        XCTAssertEqual(step?.distance ?? 0, 621, accuracy: 1)
+        XCTAssertEqual(step?.expectedTravelTime ?? 0, 31, accuracy: 1)
+        XCTAssertEqual(step?.instructions, "Take exit 43-44 towards VA 193: George Washington Memorial Parkway")
         
-        XCTAssertNil(step.names)
-        XCTAssertNotNil(step.destinations)
-        XCTAssertEqual(step.destinations ?? [], ["Washington"])
-        XCTAssertEqual(step.maneuverType, .takeOffRamp)
-        XCTAssertEqual(step.maneuverDirection, .slightRight)
-        XCTAssertEqual(step.initialHeading, 90)
-        XCTAssertEqual(step.finalHeading, 96)
+        XCTAssertNil(step?.names)
+        XCTAssertEqual(step?.destinationCodes, ["VA 193"])
+        XCTAssertEqual(step?.destinations, ["George Washington Memorial Parkway", "Washington", "Georgetown Pike"])
+        XCTAssertEqual(step?.maneuverType, .takeOffRamp)
+        XCTAssertEqual(step?.maneuverDirection, .slightRight)
+        XCTAssertEqual(step?.initialHeading, 192)
+        XCTAssertEqual(step?.finalHeading, 202)
         
-        XCTAssertNotNil(step.coordinates)
-        XCTAssertEqual(step.coordinates!.count, 17)
-        XCTAssertEqual(step.coordinates!.count, Int(step.coordinateCount))
-        let coordinate = step.coordinates!.first!
-        XCTAssertEqual(round(coordinate.latitude), 39)
-        XCTAssertEqual(round(coordinate.longitude), -77)
+        XCTAssertNotNil(step?.coordinates)
+        XCTAssertEqual(step?.coordinates?.count, 13)
+        XCTAssertEqual(step?.coordinates?.count, Int(step?.coordinateCount ?? 0))
+        XCTAssertEqual(step?.coordinates?.first?.latitude ?? 0, 38.9667, accuracy: 1e-4)
+        XCTAssertEqual(step?.coordinates?.first?.longitude ?? 0, -77.1802, accuracy: 1e-4)
         
-        XCTAssertNil(leg.steps[28].names)
-        XCTAssertEqual(leg.steps[28].codes ?? [], ["I 80"])
-        XCTAssertEqual(leg.steps[28].destinationCodes ?? [], ["I 80 East", "I 90"])
-        XCTAssertEqual(leg.steps[28].destinations ?? [], ["Toll Road"])
+        XCTAssertNil(leg?.steps[32].names)
+        XCTAssertEqual(leg?.steps[32].codes, ["I-80"])
+        XCTAssertEqual(leg?.steps[32].destinationCodes, ["I-80 East", "I-90"])
+        XCTAssertEqual(leg?.steps[32].destinations, ["Toll Road"])
         
-        XCTAssertEqual(leg.steps[30].names ?? [], ["Ohio Turnpike"])
-        XCTAssertEqual(leg.steps[30].codes ?? [], ["I 80", "I 90"])
-        XCTAssertNil(leg.steps[30].destinationCodes)
-        XCTAssertNil(leg.steps[30].destinations)
+        XCTAssertEqual(leg?.steps[35].names, ["Ohio Turnpike"])
+        XCTAssertEqual(leg?.steps[35].codes, ["I-80 East"])
+        XCTAssertNil(leg?.steps[35].destinationCodes)
+        XCTAssertNil(leg?.steps[35].destinations)
         
-        let intersections = leg.steps[40].intersections
+        let intersections = leg?.steps[4].intersections
         XCTAssertNotNil(intersections)
-        XCTAssertEqual(intersections?.count, 7)
-        let intersection = intersections?[2]
-        XCTAssertEqual(intersection?.outletIndexes.contains(0), true)
-        XCTAssertEqual(intersection?.outletIndexes.contains(integersIn: 2...3), true)
-        XCTAssertEqual(intersection?.approachIndex, 1)
-        XCTAssertEqual(intersection?.outletIndex, 3)
-        XCTAssertEqual(intersection?.headings ?? [], [15, 90, 195, 270])
-        XCTAssertNotNil(intersection?.location.latitude)
-        XCTAssertNotNil(intersection?.location.longitude)
-        XCTAssertEqual(intersection?.usableApproachLanes, IndexSet(integersIn: 1...3))
+        XCTAssertEqual(intersections?.count, 29)
+        let intersection = intersections?[0]
+        XCTAssertEqual(intersection?.outletIndexes, IndexSet([0, 1]))
+        XCTAssertEqual(intersection?.approachIndex, 2)
+        XCTAssertEqual(intersection?.outletIndex, 0)
+        XCTAssertEqual(intersection?.headings, [105, 135, 285])
+        XCTAssertEqual(intersection?.location.latitude ?? 0, 37.7691, accuracy: 1e-4)
+        XCTAssertEqual(intersection?.location.longitude ?? 0, -122.4092, accuracy: 1e-4)
+        XCTAssertEqual(intersection?.usableApproachLanes, IndexSet([0, 1]))
+        XCTAssertNotNil(intersection?.approachLanes)
+        XCTAssertEqual(intersection?.approachLanes?.count, 3)
+        XCTAssertEqual(intersection?.approachLanes?[1].indications, [.slightLeft, .slightRight])
         
-        XCTAssertNil(leg.steps[57].names)
-        XCTAssertEqual(leg.steps[57].exitNames ?? [], ["Logan Circle Northwest"])
-        XCTAssertNil(leg.steps[57].codes)
-        XCTAssertNil(leg.steps[57].destinationCodes)
-        XCTAssertNil(leg.steps[57].destinations)
-        
-        let lane = intersection?.approachLanes?.first
-        let indications = lane?.indications
-        XCTAssertNotNil(indications)
-        XCTAssertTrue(indications!.contains(.left))
+        XCTAssertEqual(leg?.steps[58].names, ["Logan Circle Northwest"])
+        XCTAssertNil(leg?.steps[58].exitNames)
+        XCTAssertNil(leg?.steps[58].codes)
+        XCTAssertNil(leg?.steps[58].destinationCodes)
+        XCTAssertNil(leg?.steps[58].destinations)
     }
     
     func testGeoJSON() {
@@ -194,5 +201,38 @@ class V5Tests: XCTestCase {
         }
         
         test(shapeFormat: .polyline6, transformer: transformer, filePath: "v5_driving_dc_polyline")
+    }
+    
+    func testCoding() {
+        let path = Bundle(for: type(of: self)).path(forResource: "v5_driving_dc_polyline", ofType: "json")
+        let filePath = URL(fileURLWithPath: path!)
+        let data = try! Data(contentsOf: filePath, options: [])
+        let jsonResponse = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+        
+        let options = RouteOptions(coordinates: [
+            CLLocationCoordinate2D(latitude: 37.78, longitude: -122.42),
+            CLLocationCoordinate2D(latitude: 38.91, longitude: -77.03),
+        ])
+        let routes = options.response(from: jsonResponse).1
+        let route = routes!.first!
+        route.accessToken = BogusToken
+        route.apiEndpoint = URL(string: "https://api.mapbox.com")
+        route.routeIdentifier = jsonResponse["uuid"] as? String
+        
+        // Encode and decode the route securely.
+        // This may raise an Objective-C exception if an error occurs, which will fail the tests.
+        
+        let encodedData = NSMutableData()
+        let keyedArchiver = NSKeyedArchiver(forWritingWith: encodedData)
+        keyedArchiver.requiresSecureCoding = true
+        keyedArchiver.encode(route, forKey: "route")
+        keyedArchiver.finishEncoding()
+        
+        let keyedUnarchiver = NSKeyedUnarchiver(forReadingWith: encodedData as Data)
+        keyedUnarchiver.requiresSecureCoding = true
+        let unarchivedRoute = keyedUnarchiver.decodeObject(of: Route.self, forKey: "route")!
+        keyedUnarchiver.finishDecoding()
+        
+        test(unarchivedRoute, options: options)
     }
 }

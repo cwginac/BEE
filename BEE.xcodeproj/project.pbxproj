@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8C1A6B8021C751FA00D28F06 /* other.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1A6B7D21C751FA00D28F06 /* other.png */; };
-		8C1A6B8121C751FA00D28F06 /* largeAnimalsShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1A6B7E21C751FA00D28F06 /* largeAnimalsShelter.png */; };
 		8C1A6B8221C751FA00D28F06 /* hospital.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1A6B7F21C751FA00D28F06 /* hospital.png */; };
 		8C4446D021C74E5A009ECCFF /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4446CF21C74E5A009ECCFF /* Mapbox.framework */; };
 		8C4446D121C74E5A009ECCFF /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4446CF21C74E5A009ECCFF /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -17,11 +16,9 @@
 		8C5C4F65219BB471003E4C02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C4F63219BB471003E4C02 /* Main.storyboard */; };
 		8C5C4F6A219BB473003E4C02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C4F69219BB473003E4C02 /* Assets.xcassets */; };
 		8C5C4F6D219BB473003E4C02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C4F6B219BB473003E4C02 /* LaunchScreen.storyboard */; };
-		8C8BF0EC21C57265000004CE /* response.json in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF0EB21C57265000004CE /* response.json */; };
 		8C8BF10321C5BE14000004CE /* tropicalStorm.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF10121C5BE13000004CE /* tropicalStorm.png */; };
 		8C8BF10421C5BE14000004CE /* hurricane.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF10221C5BE14000004CE /* hurricane.png */; };
 		8C8BF10B21C5BF30000004CE /* police.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF10621C5BF2E000004CE /* police.png */; };
-		8C8BF10D21C5BF30000004CE /* smallAnimalsShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF10821C5BF30000004CE /* smallAnimalsShelter.png */; };
 		8C8BF10E21C5BF30000004CE /* humanShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF10921C5BF30000004CE /* humanShelter.png */; };
 		8C8BF10F21C5C04B000004CE /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF0FA21C5B92D000004CE /* fire.png */; };
 		8C8BF11721C5C5BD000004CE /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF11621C5C5BD000004CE /* Cartfile */; };
@@ -43,6 +40,16 @@
 		8C8BF13721C5E549000004CE /* Solar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12B21C5E522000004CE /* Solar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C8BF13821C5E549000004CE /* Turf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12A21C5E522000004CE /* Turf.framework */; };
 		8C8BF13921C5E549000004CE /* Turf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12A21C5E522000004CE /* Turf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8CD30951222783C100805E1D /* largeAnimalShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3094D222783C100805E1D /* largeAnimalShelter.png */; };
+		8CD30952222783C100805E1D /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3094E222783C100805E1D /* information.png */; };
+		8CD30953222783C100805E1D /* smallAnimalShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3094F222783C100805E1D /* smallAnimalShelter.png */; };
+		8CD30954222783C100805E1D /* roadBlocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD30950222783C100805E1D /* roadBlocked.png */; };
+		8CD30956222CB3E700805E1D /* ServerInteractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD30955222CB3E700805E1D /* ServerInteractions.swift */; };
+		8CD30958222CB56900805E1D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD30957222CB56900805E1D /* Enums.swift */; };
+		8CD3095A222CB5E400805E1D /* LocationPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD30959222CB5E400805E1D /* LocationPointAnnotation.swift */; };
+		8CD3095C222CC66400805E1D /* BeeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3095B222CC66400805E1D /* BeeNavigation.swift */; };
+		8CD3095E222CC7D100805E1D /* EvacuationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3095D222CC7D100805E1D /* EvacuationRoute.swift */; };
+		8CD30960222CC88000805E1D /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3095F222CC88000805E1D /* Waypoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +90,6 @@
 
 /* Begin PBXFileReference section */
 		8C1A6B7D21C751FA00D28F06 /* other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = other.png; sourceTree = "<group>"; };
-		8C1A6B7E21C751FA00D28F06 /* largeAnimalsShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largeAnimalsShelter.png; sourceTree = "<group>"; };
 		8C1A6B7F21C751FA00D28F06 /* hospital.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hospital.png; sourceTree = "<group>"; };
 		8C4446CF21C74E5A009ECCFF /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 		8C5C4F5C219BB471003E4C02 /* BEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,12 +101,10 @@
 		8C5C4F6E219BB473003E4C02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C5C4F73219BB473003E4C02 /* BEETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BEETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5C4F7E219BB473003E4C02 /* BEEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BEEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C8BF0EB21C57265000004CE /* response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = response.json; sourceTree = "<group>"; };
 		8C8BF0FA21C5B92D000004CE /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		8C8BF10121C5BE13000004CE /* tropicalStorm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tropicalStorm.png; sourceTree = "<group>"; };
 		8C8BF10221C5BE14000004CE /* hurricane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurricane.png; sourceTree = "<group>"; };
 		8C8BF10621C5BF2E000004CE /* police.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = police.png; sourceTree = "<group>"; };
-		8C8BF10821C5BF30000004CE /* smallAnimalsShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallAnimalsShelter.png; sourceTree = "<group>"; };
 		8C8BF10921C5BF30000004CE /* humanShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = humanShelter.png; sourceTree = "<group>"; };
 		8C8BF11621C5C5BD000004CE /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		8C8BF11821C5E0F7000004CE /* MapboxCoreNavigation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxCoreNavigation.framework; path = Carthage/Build/iOS/MapboxCoreNavigation.framework; sourceTree = "<group>"; };
@@ -113,6 +117,16 @@
 		8C8BF12C21C5E522000004CE /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
 		8C8BF12D21C5E522000004CE /* MapboxSpeech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxSpeech.framework; path = Carthage/Build/iOS/MapboxSpeech.framework; sourceTree = "<group>"; };
 		8C97B6D221C5611600193543 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		8CD3094D222783C100805E1D /* largeAnimalShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largeAnimalShelter.png; sourceTree = "<group>"; };
+		8CD3094E222783C100805E1D /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
+		8CD3094F222783C100805E1D /* smallAnimalShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallAnimalShelter.png; sourceTree = "<group>"; };
+		8CD30950222783C100805E1D /* roadBlocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roadBlocked.png; sourceTree = "<group>"; };
+		8CD30955222CB3E700805E1D /* ServerInteractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerInteractions.swift; sourceTree = "<group>"; };
+		8CD30957222CB56900805E1D /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		8CD30959222CB5E400805E1D /* LocationPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPointAnnotation.swift; sourceTree = "<group>"; };
+		8CD3095B222CC66400805E1D /* BeeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeNavigation.swift; sourceTree = "<group>"; };
+		8CD3095D222CC7D100805E1D /* EvacuationRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvacuationRoute.swift; sourceTree = "<group>"; };
+		8CD3095F222CC88000805E1D /* Waypoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
 		8CF5638C21A25F7000B47E62 /* BEE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BEE.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,7 +183,6 @@
 				8C8BF11821C5E0F7000004CE /* MapboxCoreNavigation.framework */,
 				8C8BF11621C5C5BD000004CE /* Cartfile */,
 				8C8BF0F921C5B91C000004CE /* Icons */,
-				8C8BF0EB21C57265000004CE /* response.json */,
 				8C5C4F5E219BB471003E4C02 /* BEE */,
 				8C5C4F5D219BB471003E4C02 /* Products */,
 				8C97B6D121C5611600193543 /* Frameworks */,
@@ -196,6 +209,12 @@
 				8C5C4F69219BB473003E4C02 /* Assets.xcassets */,
 				8C5C4F6B219BB473003E4C02 /* LaunchScreen.storyboard */,
 				8C5C4F6E219BB473003E4C02 /* Info.plist */,
+				8CD30955222CB3E700805E1D /* ServerInteractions.swift */,
+				8CD30957222CB56900805E1D /* Enums.swift */,
+				8CD30959222CB5E400805E1D /* LocationPointAnnotation.swift */,
+				8CD3095B222CC66400805E1D /* BeeNavigation.swift */,
+				8CD3095D222CC7D100805E1D /* EvacuationRoute.swift */,
+				8CD3095F222CC88000805E1D /* Waypoint.swift */,
 			);
 			path = BEE;
 			sourceTree = "<group>";
@@ -203,13 +222,15 @@
 		8C8BF0F921C5B91C000004CE /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8CD3094E222783C100805E1D /* information.png */,
+				8CD3094D222783C100805E1D /* largeAnimalShelter.png */,
+				8CD30950222783C100805E1D /* roadBlocked.png */,
+				8CD3094F222783C100805E1D /* smallAnimalShelter.png */,
 				8C8BF0FA21C5B92D000004CE /* fire.png */,
 				8C1A6B7F21C751FA00D28F06 /* hospital.png */,
-				8C1A6B7E21C751FA00D28F06 /* largeAnimalsShelter.png */,
 				8C1A6B7D21C751FA00D28F06 /* other.png */,
 				8C8BF10921C5BF30000004CE /* humanShelter.png */,
 				8C8BF10621C5BF2E000004CE /* police.png */,
-				8C8BF10821C5BF30000004CE /* smallAnimalsShelter.png */,
 				8C8BF10221C5BE14000004CE /* hurricane.png */,
 				8C8BF10121C5BE13000004CE /* tropicalStorm.png */,
 			);
@@ -338,17 +359,18 @@
 			files = (
 				8C8BF11721C5C5BD000004CE /* Cartfile in Resources */,
 				8C8BF10F21C5C04B000004CE /* fire.png in Resources */,
-				8C1A6B8121C751FA00D28F06 /* largeAnimalsShelter.png in Resources */,
+				8CD30954222783C100805E1D /* roadBlocked.png in Resources */,
 				8C8BF10321C5BE14000004CE /* tropicalStorm.png in Resources */,
 				8C8BF10B21C5BF30000004CE /* police.png in Resources */,
 				8C8BF10421C5BE14000004CE /* hurricane.png in Resources */,
-				8C8BF0EC21C57265000004CE /* response.json in Resources */,
 				8C8BF10E21C5BF30000004CE /* humanShelter.png in Resources */,
 				8C5C4F6D219BB473003E4C02 /* LaunchScreen.storyboard in Resources */,
+				8CD30953222783C100805E1D /* smallAnimalShelter.png in Resources */,
 				8C1A6B8221C751FA00D28F06 /* hospital.png in Resources */,
-				8C8BF10D21C5BF30000004CE /* smallAnimalsShelter.png in Resources */,
 				8C5C4F6A219BB473003E4C02 /* Assets.xcassets in Resources */,
+				8CD30951222783C100805E1D /* largeAnimalShelter.png in Resources */,
 				8C1A6B8021C751FA00D28F06 /* other.png in Resources */,
+				8CD30952222783C100805E1D /* information.png in Resources */,
 				8C5C4F65219BB471003E4C02 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,8 +424,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3095A222CB5E400805E1D /* LocationPointAnnotation.swift in Sources */,
 				8C5C4F62219BB471003E4C02 /* ViewController.swift in Sources */,
 				8C5C4F60219BB471003E4C02 /* AppDelegate.swift in Sources */,
+				8CD30958222CB56900805E1D /* Enums.swift in Sources */,
+				8CD30960222CC88000805E1D /* Waypoint.swift in Sources */,
+				8CD3095E222CC7D100805E1D /* EvacuationRoute.swift in Sources */,
+				8CD3095C222CC66400805E1D /* BeeNavigation.swift in Sources */,
+				8CD30956222CB3E700805E1D /* ServerInteractions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

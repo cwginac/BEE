@@ -1,45 +1,42 @@
 # MapboxDirections
 
-[📱&nbsp;![iOS Build Status](https://app.bitrise.io/app/2f82077d3f083479/status.svg?token=mC783nGMKA3XrvcMCJAOLg&branch=master)](https://www.bitrise.io/app/2f82077d3f083479) &nbsp;&nbsp;&nbsp;
-[🖥💻&nbsp;![macOS Build Status](https://app.bitrise.io/app/3e18d5c284ee7fe4/status.svg?token=YCPg5FTvNCSoRBvECdFWtg&branch=master)](https://www.bitrise.io/app/3e18d5c284ee7fe4) &nbsp;&nbsp;&nbsp;
-[📺&nbsp;![tvOS Build Status](https://app.bitrise.io/app/0dd69f13a42252d6/status.svg?token=jin7-oeLn35GfZqWaqumtA&branch=master)](https://www.bitrise.io/app/0dd69f13a42252d6) &nbsp;&nbsp;&nbsp;
-[⌚️&nbsp;![watchOS Build Status](https://app.bitrise.io/app/6db52b89a8fbfb40/status.svg?token=v645xdLSJWX0uYxLU7CA3g&branch=master)](https://www.bitrise.io/app/6db52b89a8fbfb40) &nbsp;&nbsp;&nbsp;
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) &nbsp;&nbsp;&nbsp;
+[![CircleCI](https://circleci.com/gh/mapbox/MapboxDirections.swift.svg?style=svg)](https://circleci.com/gh/mapbox/MapboxDirections.swift)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/MapboxDirections.swift.svg)](http://cocoadocs.org/docsets/MapboxDirections.swift/)
 
-MapboxDirections.swift makes it easy to connect your iOS, macOS, tvOS, or watchOS application to the [Mapbox Directions API](https://www.mapbox.com/directions/) and [Mapbox Map Matching API](https://www.mapbox.com/directions/). Quickly get driving, cycling, or walking directions, whether the trip is nonstop or it has multiple stopping points, all using a simple interface reminiscent of MapKit’s `MKDirections` API. Fit a GPX trace to the [OpenStreetMap](https://www.openstreetmap.org/) road network. The Mapbox Directions and Map Matching APIs are powered by the [OSRM](http://project-osrm.org/) routing engine.
+MapboxDirections.swift makes it easy to connect your iOS, macOS, tvOS, or watchOS application to the [Mapbox Directions](https://docs.mapbox.com/api/navigation/) and [Map Matching](https://docs.mapbox.com/api/navigation/#map-matching) APIs. Quickly get driving, cycling, or walking directions, whether the trip is nonstop or it has multiple stopping points, all using a simple interface reminiscent of MapKit’s `MKDirections` API. Fit a GPX trace to the [OpenStreetMap](https://www.openstreetmap.org/) road network. The Mapbox Directions and Map Matching APIs are powered by the [OSRM](http://project-osrm.org/) routing engine. For more information, see the [Mapbox Navigation](https://www.mapbox.com/navigation/) homepage.
 
 Despite its name, MapboxDirections.swift works in Objective-C and Cocoa-AppleScript code in addition to Swift 4.
 
-MapboxDirections.swift pairs well with [MapboxGeocoder.swift](https://github.com/mapbox/MapboxGeocoder.swift), [MapboxStatic.swift](https://github.com/mapbox/MapboxStatic.swift), the [Mapbox Navigation SDK for iOS](https://github.com/mapbox/mapbox-navigation-ios/), and the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) or [macOS SDK](https://mapbox.github.io/mapbox-gl-native/macos/).
+MapboxDirections.swift pairs well with [MapboxGeocoder.swift](https://github.com/mapbox/MapboxGeocoder.swift), [MapboxStatic.swift](https://github.com/mapbox/MapboxStatic.swift), the [Mapbox Navigation SDK for iOS](https://github.com/mapbox/mapbox-navigation-ios/), and the [Mapbox Maps SDK for iOS](https://docs.mapbox.com/ios/maps/) or [macOS SDK](https://mapbox.github.io/mapbox-gl-native/macos/).
 
 ## Getting started
 
 Specify the following dependency in your [Carthage](https://github.com/Carthage/Carthage) Cartfile:
 
 ```cartfile
-github "mapbox/MapboxDirections.swift" ~> 0.25
+github "mapbox/MapboxDirections.swift" ~> 0.27
 ```
 
 Or in your [CocoaPods](http://cocoapods.org/) Podfile:
 
 ```podspec
-pod 'MapboxDirections.swift', '~> 0.25'
+pod 'MapboxDirections.swift', '~> 0.27'
 ```
 
 Then `import MapboxDirections` or `@import MapboxDirections;`.
 
 v0.12.1 is the last release of MapboxDirections.swift written in Swift 3. All subsequent releases will be based on the `master` branch, which is written in Swift 4. The Swift examples below are written in Swift 4.
 
-This repository contains example applications written in Swift and Objective-C that demonstrate how to use the framework. To run them, you need to use [Carthage](https://github.com/Carthage/Carthage) 0.19 or above to install the dependencies. More examples and detailed documentation are available in the [Mapbox API Documentation](https://www.mapbox.com/api-documentation/?language=Swift#directions).
+This repository contains example applications written in Swift and Objective-C that demonstrate how to use the framework. To run them, you need to use [Carthage](https://github.com/Carthage/Carthage) 0.19 or above to install the dependencies. Detailed documentation is available in the [Mapbox API Documentation](https://docs.mapbox.com/api/navigation/#directions).
 
 ## Usage
 
-**[API reference](https://www.mapbox.com/ios-sdk/api/directions/)**
+**[API reference](https://docs.mapbox.com/ios/api/directions/)**
 
-You’ll need a [Mapbox access token](https://www.mapbox.com/developers/api/#access-tokens) in order to use the API. If you’re already using the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) or [macOS SDK](https://mapbox.github.io/mapbox-gl-native/macos/), MapboxDirections.swift automatically recognizes your access token, as long as you’ve placed it in the `MGLMapboxAccessToken` key of your application’s Info.plist file.
+You’ll need a [Mapbox access token](https://docs.mapbox.com/api/#access-tokens-and-token-scopes) in order to use the API. If you’re already using the [Mapbox Maps SDK for iOS](https://docs.mapbox.com/ios/maps/) or [macOS SDK](https://mapbox.github.io/mapbox-gl-native/macos/), MapboxDirections.swift automatically recognizes your access token, as long as you’ve placed it in the `MGLMapboxAccessToken` key of your application’s Info.plist file.
 
-The examples below are each provided in Swift (denoted with `main.swift`), Objective-C (`main.m`), and AppleScript (`AppDelegate.applescript`). For further details, see the [MapboxDirections.swift API reference](https://www.mapbox.com/ios-sdk/api/directions/).
+The examples below are each provided in Swift (denoted with `main.swift`), Objective-C (`main.m`), and AppleScript (`AppDelegate.applescript`). For further details, see the [MapboxDirections.swift API reference](https://docs.mapbox.com/ios/api/directions/).
 
 ### Calculating directions between locations
 
@@ -267,21 +264,21 @@ NSURLSessionDataTask *task = [[[MBDirections alloc] initWithAccessToken:MapboxAc
         NSLog(@"Error matching waypoints: %@", error);
         return;
     }
-    
+
     MBMatch *match = matches.firstObject;
     MBRouteLeg *leg = match.legs.firstObject;
     if (leg) {
         NSLog(@"Match via %@:", leg);
-        
+
         NSLengthFormatter *distanceFormatter = [[NSLengthFormatter alloc] init];
         NSString *formattedDistance = [distanceFormatter stringFromMeters:leg.distance];
-        
+
         NSDateComponentsFormatter *travelTimeFormatter = [[NSDateComponentsFormatter alloc] init];
         travelTimeFormatter.unitsStyle = NSDateComponentsFormatterUnitsStyleShort;
         NSString *formattedTravelTime = [travelTimeFormatter stringFromTimeInterval:match.expectedTravelTime];
-        
+
         NSLog(@"Distance: %@; ETA: %@", formattedDistance, formattedTravelTime);
-        
+
         for (MBRouteStep *step in leg.steps) {
             NSLog(@"%@", step.instructions);
             NSString *formattedDistance = [distanceFormatter stringFromMeters:step.distance];
@@ -297,7 +294,7 @@ You can also use the `Directions.calculateRoutes(matching:completionHandler:)` m
 
 ### Drawing the route on a map
 
-With the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) or [macOS SDK](https://mapbox.github.io/mapbox-gl-native/macos/), you can easily draw the route on a map in Swift or Objective-C:
+With the [Mapbox Maps SDK for iOS](https://docs.mapbox.com/ios/maps/) or [macOS SDK](https://mapbox.github.io/mapbox-gl-native/macos/), you can easily draw the route on a map in Swift or Objective-C:
 
 ```swift
 // main.swift

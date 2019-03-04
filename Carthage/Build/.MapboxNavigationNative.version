@@ -8,11 +8,11 @@
   "tvOS" : [
 
   ],
-  "commitish" : "3.4.10",
+  "commitish" : "5.0.0",
   "iOS" : [
     {
       "name" : "MapboxNavigationNative",
-      "hash" : "4fadd0cb39e4bc172b89c86c37cc579ea941dcc3fd689058dfa8bc0fe1a58b7f"
+      "hash" : "742aa66f71eed91fce894828ecf3c43da5873d2e6b727e8716ba536df53d5688"
     }
   ]
 }

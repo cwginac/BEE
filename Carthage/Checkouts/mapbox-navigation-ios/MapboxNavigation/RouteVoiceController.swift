@@ -136,11 +136,11 @@ open class RouteVoiceController: NSObject, AVSpeechSynthesizerDelegate {
     }
     
     @objc func pauseSpeechAndPlayReroutingDing(notification: NSNotification) {
-        speechSynth.stopSpeaking(at: .word)
-        
         guard playRerouteSound && !NavigationSettings.shared.voiceMuted else {
             return
         }
+        
+        speechSynth.stopSpeaking(at: .word)
         
         do {
             try mixAudio()
@@ -159,9 +159,12 @@ open class RouteVoiceController: NSObject, AVSpeechSynthesizerDelegate {
     }
     
     func duckAudio() throws {
-        let categoryOptions: AVAudioSessionCategoryOptions = [.duckOthers, .interruptSpokenAudioAndMixWithOthers]
-        try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeSpokenAudio)
-        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: categoryOptions)
+        if #available(iOS 12.0, *) {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeVoicePrompt, options: [.duckOthers, .mixWithOthers])
+        } else {
+            try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeSpokenAudio)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: [.duckOthers, .mixWithOthers])
+        }
         try AVAudioSession.sharedInstance().setActive(true)
     }
     

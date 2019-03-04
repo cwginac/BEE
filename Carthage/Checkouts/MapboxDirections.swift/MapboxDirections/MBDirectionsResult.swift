@@ -21,6 +21,9 @@ open class DirectionsResult: NSObject, NSSecureCoding {
     }
         
     @objc public required init?(coder decoder: NSCoder) {
+        accessToken = decoder.decodeObject(of: NSString.self, forKey: "accessToken") as String?
+        apiEndpoint = decoder.decodeObject(of: NSURL.self, forKey: "apiEndpoint") as URL?
+        
         let coordinateDictionaries = decoder.decodeObject(of: [NSArray.self, NSDictionary.self, NSString.self, NSNumber.self], forKey: "coordinates") as? [[String: CLLocationDegrees]]
         coordinates = coordinateDictionaries?.compactMap({ (coordinateDictionary) -> CLLocationCoordinate2D? in
             if let latitude = coordinateDictionary["latitude"],
@@ -50,6 +53,9 @@ open class DirectionsResult: NSObject, NSSecureCoding {
     }
     
     @objc public func encode(with coder: NSCoder) {
+        coder.encode(accessToken, forKey: "accessToken")
+        coder.encode(apiEndpoint, forKey: "apiEndpoint")
+        
         let coordinateDictionaries = coordinates?.map { [
             "latitude": $0.latitude,
             "longitude": $0.longitude,
@@ -69,7 +75,7 @@ open class DirectionsResult: NSObject, NSSecureCoding {
      
      This array may be `nil` or simplified depending on the `routeShapeResolution` property of the original `RouteOptions` object.
      
-     Using the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) or [Mapbox Maps SDK for macOS](https://github.com/mapbox/mapbox-gl-native/tree/master/platform/macos/), you can create an `MGLPolyline` object using these coordinates to display an overview of the route on an `MGLMapView`.
+     Using the [Mapbox Maps SDK for iOS](https://docs.mapbox.com/ios/maps/) or [Mapbox Maps SDK for macOS](https://mapbox.github.io/mapbox-gl-native/macos/), you can create an `MGLPolyline` object using these coordinates to display an overview of the route on an `MGLMapView`.
      */
     @objc public let coordinates: [CLLocationCoordinate2D]?
     
@@ -89,7 +95,7 @@ open class DirectionsResult: NSObject, NSSecureCoding {
      
      The array may be empty or simplified depending on the `routeShapeResolution` property of the original `RouteOptions` object.
      
-     Using the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) or [Mapbox Maps SDK for macOS](https://github.com/mapbox/mapbox-gl-native/tree/master/platform/macos/), you can create an `MGLPolyline` object using these coordinates to display an overview of the route on an `MGLMapView`.
+     Using the [Mapbox Maps SDK for iOS](https://docs.mapbox.com/ios/maps/) or [Mapbox Maps SDK for macOS](https://mapbox.github.io/mapbox-gl-native/macos/), you can create an `MGLPolyline` object using these coordinates to display an overview of the route on an `MGLMapView`.
      
      - parameter coordinates: A pointer to a C array of `CLLocationCoordinate2D` instances. On output, this array contains all the vertices of the overlay.
      
@@ -142,7 +148,7 @@ open class DirectionsResult: NSObject, NSSecureCoding {
     @objc public let directionsOptions: DirectionsOptions
     
     /**
-     The [access token](https://www.mapbox.com/help/define-access-token/) used to make the directions request.
+     The [access token](https://docs.mapbox.com/help/glossary/access-token/) used to make the directions request.
      
      This property is set automatically if a request is made via `Directions.calculate(_:completionHandler:)`.
      */
@@ -175,4 +181,22 @@ open class DirectionsResult: NSObject, NSSecureCoding {
      This locale is specific to Mapbox Voice API. If `nil` is returned, the instruction should be spoken with an alternative speech synthesizer.
      */
     @objc open var speechLocale: Locale?
+    
+    /**
+     The time immediately before a `Directions` object fetched this result.
+     
+     If you manually start fetching a task returned by `Directions.url(forCalculating:)`, this property is set to `nil`; use the `URLSessionTaskTransactionMetrics.fetchStartDate` property instead. This property may also be set to `nil` if you create this result from a JSON object or encoded object.
+     
+     This property does not persist after encoding and decoding.
+     */
+    @objc open var fetchStartDate: Date?
+    
+    /**
+     The time immediately before a `Directions` object received the last byte of this result.
+     
+     If you manually start fetching a task returned by `Directions.url(forCalculating:)`, this property is set to `nil`; use the `URLSessionTaskTransactionMetrics.responseEndDate` property instead. This property may also be set to `nil` if you create this result from a JSON object or encoded object.
+     
+     This property does not persist after encoding and decoding.
+     */
+    @objc open var responseEndDate: Date?
 }

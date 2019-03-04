@@ -14,6 +14,7 @@
 #import "MMEUIApplicationWrapperFake.h"
 #import "CLLocation+MMEMobileEvents.h"
 #import "MMEUIApplicationWrapper.h"
+#import "MMEMetricsManager.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -724,6 +725,56 @@ describe(@"MMEEventsManager", ^{
         
     });
     
+    describe(@"- sendTelemetryMetricsEvent", ^{
+        context(@"when next telemetryMetrics send date is not nil and event manager is correctly configured", ^{
+            beforeEach(^{
+                MMEEvent *event = [MMEEvent mapTapEventWithDateString:@"a nice date" attributes:@{@"attribute1": @"a nice attribute"}];
+                NSArray *eventQueueFake = [[NSArray alloc] initWithObjects:event, nil];
+                eventsManager.eventQueue = [eventQueueFake mutableCopy];
+                [eventsManager flush];
+                
+                MMEAPIClientFake *fakeAPIClient = [[MMEAPIClientFake alloc] init];
+                spy_on(fakeAPIClient);
+                fakeAPIClient.accessToken = @"access-token";
+                fakeAPIClient.userAgentBase = @"user-agent-base";
+                fakeAPIClient.hostSDKVersion = @"host-sdk-version";
+                eventsManager.apiClient = fakeAPIClient;
+                
+                spy_on([MMEMetricsManager sharedManager].metrics);
+            });
+            
+            afterEach(^{
+                stop_spying_on([MMEMetricsManager sharedManager].metrics);
+            });
+            
+            context(@"when the current time is before the next telemetryMetrics send date", ^{
+                beforeEach(^{
+                    NSDate *date = [NSDate dateWithTimeIntervalSince1970:500];
+                    [MMEMetricsManager sharedManager].metrics stub_method(@selector(date)).and_return(date);
+                    
+                    [eventsManager sendTelemetryMetricsEvent];
+                });
+                
+                it(@"tells its api client to not post events", ^{
+                    eventsManager.apiClient should_not have_received(@selector(postEvent:completionHandler:));
+                });
+            });
+            
+            context(@"when the current time is after the next telemetryMetrics send date", ^{
+                beforeEach(^{
+                    NSDate *date = [dateWrapper startOfTomorrowFromDate:[NSDate date]];
+                    [MMEMetricsManager sharedManager].metrics stub_method(@selector(date)).and_return(date);
+                    
+                    [eventsManager sendTelemetryMetricsEvent];
+                });
+                
+                it(@"tells its api client to post events", ^{
+                    eventsManager.apiClient should have_received(@selector(postEvent:completionHandler:));
+                });
+            });
+        });
+    });
+    
     describe(@"- enqueueEventWithName:attributes", ^{
         __block NSString *dateString;
         __block MMECommonEventData *commonEventData;
@@ -780,20 +831,20 @@ describe(@"MMEEventsManager", ^{
                 });
                 
                 it(@"has the correct event", ^{
-                    MMEEvent *expectedEvent = [MMEEvent mapOfflineDownloadStartWithDateString:dateString attributes:attributes];
+                    MMEEvent *expectedEvent = [MMEEvent mapOfflineDownloadStartEventWithDateString:dateString attributes:attributes];
                     MMEEvent *event = eventsManager.eventQueue.firstObject;
                     
                     event should equal(expectedEvent);
                 });
             });
             
-            context(@"when a map download complete event is pushed", ^{
+            context(@"when a map download end event is pushed", ^{
                 beforeEach(^{
-                    [eventsManager enqueueEventWithName:MMEventTypeOfflineDownloadComplete attributes:attributes];
+                    [eventsManager enqueueEventWithName:MMEventTypeOfflineDownloadEnd attributes:attributes];
                 });
                 
                 it(@"has the correct event", ^{
-                    MMEEvent *expectedEvent = [MMEEvent mapOfflineDownloadCompleteWithDateString:dateString attributes:attributes];
+                    MMEEvent *expectedEvent = [MMEEvent mapOfflineDownloadEndEventWithDateString:dateString attributes:attributes];
                     MMEEvent *event = eventsManager.eventQueue.firstObject;
                     
                     event should equal(expectedEvent);
@@ -842,13 +893,13 @@ describe(@"MMEEventsManager", ^{
                 });
             });
             
-            context(@"when an unknown event is pushed", ^{
+            context(@"when a generic event is pushed", ^{
                 beforeEach(^{
-                    [eventsManager enqueueEventWithName:@"invalid" attributes:attributes];
+                    [eventsManager enqueueEventWithName:@"generic" attributes:attributes];
                 });
                 
-                it(@"does not queue the event", ^{
-                    eventsManager.eventQueue.count should equal(0);
+                it(@"does queue the event", ^{
+                    eventsManager.eventQueue.count should equal(1);
                 });
             });
         });

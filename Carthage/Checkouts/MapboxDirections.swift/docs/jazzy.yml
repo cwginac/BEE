@@ -1,9 +1,9 @@
 module: MapboxDirections
 author: Mapbox
-author_url: https://www.mapbox.com/directions/
+author_url: https://www.mapbox.com/navigation/
 github_url: https://github.com/mapbox/MapboxDirections.swift
-dash_url: https://www.mapbox.com/mapbox-navigation-ios/directions/docsets/MapboxDirections.xml
-copyright: '© 2014–2017 [Mapbox](https://www.mapbox.com/). See [license](https://github.com/mapbox/MapboxDirections.swift/blob/master/LICENSE.md) for more details.'
+dash_url: https://docs.mapbox.com/ios/docsets/MapboxDirections.xml
+copyright: '© 2014–2019 [Mapbox](https://www.mapbox.com/). See [license](https://github.com/mapbox/MapboxDirections.swift/blob/master/LICENSE.md) for more details.'
 
 head: |
   <link rel='shortcut icon' href='https://www.mapbox.com/img/favicon.ico' type='image/x-icon' />

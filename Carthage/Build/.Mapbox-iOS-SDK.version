@@ -8,11 +8,11 @@
   "tvOS" : [
 
   ],
-  "commitish" : "4.6.0",
+  "commitish" : "4.8.0",
   "iOS" : [
     {
       "name" : "Mapbox",
-      "hash" : "0e60d585203e2430c83d23573bf4589ad31a13cf98b774817d1889caf1f8a3db"
+      "hash" : "c6c579188134b869cab747cfe03a3995f54881ebc6e13c0e2fde3873bb50c4d5"
     }
   ]
 }
