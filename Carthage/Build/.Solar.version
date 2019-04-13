@@ -3,7 +3,8 @@
   "iOS" : [
     {
       "name" : "Solar",
-      "hash" : "cee8257c958579b896e75e5646dd1d2ee0649ece29b158037cfc15d473e6c3d3"
+      "hash" : "b7a4ce8acd56431dfafd3e22b55ea4b8439299aac082b9b49ce885cddfbdec97",
+      "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
     }
   ]
 }

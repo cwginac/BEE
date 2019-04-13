@@ -13,16 +13,107 @@ import UIKit
 class Server {
     var navigation: BeeNavigation = BeeNavigation()
     
-    func updateLocation(inEvacuation: Bool, viewController: ViewController) {
+    func updateLocationInBackground() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let locationManager = CLLocationManager()
+        
+        var userToken = ""
+        if (appDelegate.deviceToken != "") {
+            userToken = appDelegate.deviceToken
+        }
+        else {
+            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+        }
+        
+        // prepare json data
+        let location = locationManager.location?.coordinate
+        let dataString = "id=" + userToken + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+        
+        // create post request
+        let url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/update-location")!
+        
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = dataString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+        
+        task.resume()
+    }
+
+    func reportSafe(viewController: MapViewController) {
+        print("Marking Safe")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        var userToken = ""
+        if (appDelegate.deviceToken != "") {
+            userToken = appDelegate.deviceToken
+        }
+        else {
+            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+        }
+        
+        // prepare json data
+        let dataString = "userId=" + userToken + "&evacId=" + viewController.g_evacId
+        
+        // create post request
+        let url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/evacuation-safe")!
+        
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = dataString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func updateLocation(inEvacuation: Bool, viewController: MapViewController) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        var userToken = ""
+        if (appDelegate.deviceToken != "") {
+            userToken = appDelegate.deviceToken
+        }
+        else {
+            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+        }
+        
         // prepare json data
         let location = viewController.locationManager.location?.coordinate ?? viewController.mapView.userLocation?.coordinate
-        var dataString = "id=" + (UIDevice.current.identifierForVendor?.uuidString)! + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+        var dataString = "id=" + userToken + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
         
         // create post request
         var url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/update-location")!
         
         if (inEvacuation) {
-            dataString = "userId=" + (UIDevice.current.identifierForVendor?.uuidString)! + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+            dataString = "userId=" + userToken
+            dataString += "&name=" + viewController.defaults.string(forKey: "name")!
+            dataString += "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
             dataString += "&evacId=" + viewController.g_evacId;
             url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/evacuation-update-location")!
             print("updating location for evacuation")
@@ -48,7 +139,7 @@ class Server {
         task.resume()
     }
 
-    func getLocations(viewController: ViewController) {
+    func getLocations(viewController: MapViewController) {
         // Set the URL the request is being made to.
         let request = URLRequest(url: NSURL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/get-locations?id=" + (UIDevice.current.identifierForVendor?.uuidString)!)! as URL)
         do {
@@ -77,7 +168,7 @@ class Server {
         }
     }
 
-    func getEvents(viewController: ViewController) {
+    func getEvents(viewController: MapViewController) {
         // Set the URL the request is being made to.
         let request = URLRequest(url: NSURL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/get-events?id=" + (UIDevice.current.identifierForVendor?.uuidString)!)! as URL)
         do {
@@ -120,14 +211,12 @@ class Server {
                             navigation.getClosestWaypoint(evacRoute: route, viewController: viewController)
                             
                             _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                                if self.navigation.doneFindingClosestWaypoint[route.route_id]! {
+                                if self.navigation.doneFindingClosestWaypoint[route.route_id] ?? false {
                                     timer.invalidate()
                                     self.navigation.getShortestRoute(evacRoute: route, viewController: viewController)
                                     _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                                        if self.navigation.doneFindingShortestRoute[route.route_id]! {
+                                        if self.navigation.doneFindingShortestRoute[route.route_id] ?? false {
                                             timer.invalidate()
-                                            print("found shortest route!")
-                                            print (route.route_id)
                                             self.navigation.drawRoute(route: self.navigation.shortestRoute[route.route_id]!, beeRoute: route, viewController: viewController)
                                         }
                                     }
@@ -140,5 +229,42 @@ class Server {
         } catch {
             // handle error
         }
+    }
+    
+    func acknowledgeEvacuation(viewController: MapViewController) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        var userToken = ""
+        if (appDelegate.deviceToken != "") {
+            userToken = appDelegate.deviceToken
+        }
+        else {
+            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+        }
+        
+        // prepare json data
+        let dataString = "userId=" + userToken + "&evacId=" + viewController.g_evacId
+        
+        // create post request
+        let url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/acknowledge-evacuation")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = dataString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+        
+        task.resume()
     }
 }

@@ -3,7 +3,8 @@
   "iOS" : [
     {
       "name" : "Polyline",
-      "hash" : "27c8c49f7d1859588c15a38b250972a70320775ecf49c3dcc23c0e78367321b1"
+      "hash" : "dc022722c00fccbd6f12d96e4a6338395e93ab93a5ae255d3285a18a85793ee9",
+      "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
     }
   ]
 }

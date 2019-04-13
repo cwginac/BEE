@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -10,18 +10,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BEE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="BEE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Rq-9V-pu5" customClass="MGLMapView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Rq-9V-pu5" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="128" width="414" height="768"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-Hq-62W">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-Hq-62W">
                                         <rect key="frame" x="177" y="696" width="61" height="30"/>
                                         <state key="normal" title="Navigate">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -31,14 +31,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Nn-q7-fye">
-                                        <rect key="frame" x="20" y="696" width="81" height="30"/>
+                                        <rect key="frame" x="66.666666666666671" y="686" width="81.000000000000014" height="30"/>
                                         <state key="normal" title="Instructions"/>
                                         <connections>
                                             <action selector="showInstructionsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rzx-mL-C6R"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lx3-D9-TcA">
-                                        <rect key="frame" x="311" y="696" width="46" height="30"/>
+                                        <rect key="frame" x="283.66666666666669" y="686" width="47" height="30"/>
                                         <state key="normal" title="Report"/>
                                     </button>
                                 </subviews>
@@ -93,7 +93,7 @@ issued for:</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="21.428571428571427"/>
+            <point key="canvasLocation" x="54" y="686"/>
         </scene>
     </scenes>
 </document>

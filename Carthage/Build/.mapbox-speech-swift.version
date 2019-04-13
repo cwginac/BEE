@@ -1,9 +1,10 @@
 {
-  "commitish" : "v0.1.0",
+  "commitish" : "v0.1.1",
   "iOS" : [
     {
       "name" : "MapboxSpeech",
-      "hash" : "0b2ceb0d246c820b86b641d47e6a024240c82ef8f32d29d1c8119f6d138cb5be"
+      "hash" : "10bb5652884c4c1633daa77de638bbe84ee95d0db417fb8cb64d5daeea4b32c9",
+      "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
     }
   ]
 }

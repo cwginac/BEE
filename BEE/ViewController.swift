@@ -13,7 +13,7 @@ import MapboxCoreNavigation
 import MapboxNavigation
 import MapboxDirections
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, NavigationViewControllerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, NavigationViewControllerDelegate {
     let locationManager = CLLocationManager()
 
     @IBOutlet var navigateButton: UIButton!

@@ -54,11 +54,11 @@ class BeeNavigation {
         }
     }
     
-    func getClosestWaypoint(evacRoute: EvacuationRoute, viewController: ViewController) {
+    func getClosestWaypoint(evacRoute: EvacuationRoute, viewController: MapViewController) {
         self.doneFindingClosestWaypoint[evacRoute.route_id] = false
         
         let origin = viewController.locationManager.location?.coordinate ?? viewController.mapView.userLocation?.coordinate
-        let originWaypoint = Waypoint(coordinate: origin!, coordinateAccuracy: 100)
+        let originWaypoint = Waypoint(coordinate: origin!)
         originWaypoint.heading = -1
         originWaypoint.separatesLegs = false;
         
@@ -69,7 +69,7 @@ class BeeNavigation {
         for waypoint in evacRoute.waypoints {
             if (!waypoint.checkpoint) {
                 mapboxWaypoints.append(originWaypoint)
-                var mapboxWaypoint = Waypoint(coordinate: CLLocationCoordinate2DMake(waypoint.latitude, waypoint.longitude), coordinateAccuracy: 100)
+                let mapboxWaypoint = Waypoint(coordinate: CLLocationCoordinate2DMake(waypoint.latitude, waypoint.longitude))
                 mapboxWaypoints.append(mapboxWaypoint)
 
                 let options = NavigationRouteOptions(waypoints: mapboxWaypoints, profileIdentifier: MBDirectionsProfileIdentifier.automobile)
@@ -81,8 +81,8 @@ class BeeNavigation {
                     distances[mapboxWaypoint] = routes![0].distance
                     
                     if distances.count == evacRoute.waypoints.count {
-                        self.doneFindingClosestWaypoint[evacRoute.route_id] = true
                         self.closestWaypoint[evacRoute.route_id] = (distances.min {a, b in a.value < b.value}?.key)!
+                        self.doneFindingClosestWaypoint[evacRoute.route_id] = true
                     }
                 }
                 
@@ -91,10 +91,10 @@ class BeeNavigation {
         }
     }
     
-    func getShortestRoute(evacRoute: EvacuationRoute, viewController: ViewController) {
-        self.doneFindingShortestRoute[evacRoute.route_id] = true
+    func getShortestRoute(evacRoute: EvacuationRoute, viewController: MapViewController) {
+        self.doneFindingShortestRoute[evacRoute.route_id] = false
         let origin = viewController.locationManager.location?.coordinate ?? viewController.mapView.userLocation?.coordinate
-        let originWaypoint = Waypoint(coordinate: origin!, coordinateAccuracy: 100)
+        let originWaypoint = Waypoint(coordinate: origin!)
         originWaypoint.heading = -1
         originWaypoint.separatesLegs = false;
         
@@ -109,7 +109,7 @@ class BeeNavigation {
             mapboxWaypoints.append(self.closestWaypoint[evacRoute.route_id]!)
             
             for i in index..<evacRoute.checkpoints.count {
-                let mapboxWaypoint = Waypoint(coordinate: CLLocationCoordinate2DMake(evacRoute.checkpoints[i].latitude, evacRoute.checkpoints[i].longitude), coordinateAccuracy: 100)
+                let mapboxWaypoint = Waypoint(coordinate: CLLocationCoordinate2DMake(evacRoute.checkpoints[i].latitude, evacRoute.checkpoints[i].longitude))
                 mapboxWaypoint.heading = -1
                 mapboxWaypoint.separatesLegs = false
                 
@@ -125,8 +125,8 @@ class BeeNavigation {
                 routeDistance[routes![0]] = routes![0].distance
                 
                 if routeDistance.count == evacRoute.checkpoints.count {
-                    self.doneFindingShortestRoute[evacRoute.route_id] = true
                     self.shortestRoute[evacRoute.route_id] = (routeDistance.min {a, b in a.value < b.value}?.key)!
+                    self.doneFindingShortestRoute[evacRoute.route_id] = true
                 }
             }
             
@@ -134,7 +134,7 @@ class BeeNavigation {
         }
     }
     
-    func drawRoute(route: Route, beeRoute: EvacuationRoute, viewController: ViewController) {
+    func drawRoute(route: Route, beeRoute: EvacuationRoute, viewController: MapViewController) {
         //Convert the route’s coordinates into a polyline
         var routeCoordinates = route.coordinates!
         let polyline = MGLPolylineFeature(coordinates: &routeCoordinates, count: route.coordinateCount)
@@ -163,7 +163,7 @@ class BeeNavigation {
         viewController.mapView.style?.addLayer(lineStyle)
     }
     
-    func startNavigation (viewController: ViewController) {
+    func startNavigation (viewController: MapViewController) {
         var shortestRouteDistance: Double = Double(Int.max)
         var shortestActualRoute: Route? = nil
         

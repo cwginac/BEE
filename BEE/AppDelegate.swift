@@ -14,6 +14,8 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    
+    var deviceToken: String = ""
 
     func registerForPushNotifications() {
         UNUserNotificationCenter.current().delegate = self
@@ -34,9 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tokenParts = deviceToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }
-        let token = tokenParts.joined()
+        self.deviceToken = tokenParts.joined()
         // 2. Print device token to use for PNs payloads
-        print("Device Token: \(token)")
+        print("Device Token: \(self.deviceToken)")
+        
+
+        let server:Server = Server()
+        server.updateLocationInBackground()
+        NSLog("Updated Location on Launch")
+
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -47,6 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         registerForPushNotifications()
+        
+        //Launched from push notification
+        let location = launchOptions?[UIApplication.LaunchOptionsKey.location] as? [String: Any]
+        if location != nil {
+            let server:Server = Server()
+            server.updateLocationInBackground()
+            NSLog("Updated Location In Background")
+        }
         return true
     }
 

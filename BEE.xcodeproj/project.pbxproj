@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0672E522618A7900E6F38C /* Solar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70C225EC444004DB1A6 /* Solar.framework */; };
+		8C0672E622618A7900E6F38C /* Solar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70C225EC444004DB1A6 /* Solar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C0672E722618A7900E6F38C /* Turf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD59E5E225AF07700864CEE /* Turf.framework */; };
+		8C0672E822618A7900E6F38C /* Turf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD59E5E225AF07700864CEE /* Turf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C0672E922618A7900E6F38C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D709225EC443004DB1A6 /* Mapbox.framework */; };
+		8C0672EA22618A7900E6F38C /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D709225EC443004DB1A6 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C0672EF22618A7900E6F38C /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */; };
+		8C0672F022618A7900E6F38C /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C0672F122618A7900E6F38C /* MapboxNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70B225EC443004DB1A6 /* MapboxNavigation.framework */; };
+		8C0672F322618A7900E6F38C /* MapboxNavigationNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70D225EC444004DB1A6 /* MapboxNavigationNative.framework */; };
+		8C0672F522618A7900E6F38C /* MapboxSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */; };
+		8C0672F622618A7900E6F38C /* MapboxSpeech.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C0672F722618A7900E6F38C /* Polyline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D707225EC443004DB1A6 /* Polyline.framework */; };
+		8C0672F822618A7900E6F38C /* Polyline.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D707225EC443004DB1A6 /* Polyline.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C0672F922618A7900E6F38C /* Turf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70A225EC443004DB1A6 /* Turf.framework */; };
 		8C1A6B8021C751FA00D28F06 /* other.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1A6B7D21C751FA00D28F06 /* other.png */; };
 		8C1A6B8221C751FA00D28F06 /* hospital.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1A6B7F21C751FA00D28F06 /* hospital.png */; };
-		8C4446D021C74E5A009ECCFF /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4446CF21C74E5A009ECCFF /* Mapbox.framework */; };
-		8C4446D121C74E5A009ECCFF /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4446CF21C74E5A009ECCFF /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C5C4F60219BB471003E4C02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C4F5F219BB471003E4C02 /* AppDelegate.swift */; };
-		8C5C4F62219BB471003E4C02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C4F61219BB471003E4C02 /* ViewController.swift */; };
+		8C5C4F62219BB471003E4C02 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C4F61219BB471003E4C02 /* MapViewController.swift */; };
 		8C5C4F65219BB471003E4C02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C4F63219BB471003E4C02 /* Main.storyboard */; };
 		8C5C4F6A219BB473003E4C02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C4F69219BB473003E4C02 /* Assets.xcassets */; };
 		8C5C4F6D219BB473003E4C02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C4F6B219BB473003E4C02 /* LaunchScreen.storyboard */; };
@@ -22,24 +35,6 @@
 		8C8BF10E21C5BF30000004CE /* humanShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF10921C5BF30000004CE /* humanShelter.png */; };
 		8C8BF10F21C5C04B000004CE /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF0FA21C5B92D000004CE /* fire.png */; };
 		8C8BF11721C5C5BD000004CE /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BF11621C5C5BD000004CE /* Cartfile */; };
-		8C8BF12221C5E43B000004CE /* MapboxNavigationNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF11E21C5E116000004CE /* MapboxNavigationNative.framework */; };
-		8C8BF12321C5E43F000004CE /* MapboxCoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF11821C5E0F7000004CE /* MapboxCoreNavigation.framework */; };
-		8C8BF12421C5E442000004CE /* MapboxNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF11B21C5E10D000004CE /* MapboxNavigation.framework */; };
-		8C8BF12621C5E4AB000004CE /* MapboxDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12521C5E4AB000004CE /* MapboxDirections.framework */; };
-		8C8BF12821C5E4E8000004CE /* Polyline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12721C5E4E8000004CE /* Polyline.framework */; };
-		8C8BF12921C5E4E8000004CE /* Polyline.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12721C5E4E8000004CE /* Polyline.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C8BF12E21C5E522000004CE /* Turf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12A21C5E522000004CE /* Turf.framework */; };
-		8C8BF12F21C5E522000004CE /* Solar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12B21C5E522000004CE /* Solar.framework */; };
-		8C8BF13021C5E522000004CE /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12C21C5E522000004CE /* MapboxMobileEvents.framework */; };
-		8C8BF13121C5E522000004CE /* MapboxSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12D21C5E522000004CE /* MapboxSpeech.framework */; };
-		8C8BF13221C5E549000004CE /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12C21C5E522000004CE /* MapboxMobileEvents.framework */; };
-		8C8BF13321C5E549000004CE /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12C21C5E522000004CE /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C8BF13421C5E549000004CE /* MapboxSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12D21C5E522000004CE /* MapboxSpeech.framework */; };
-		8C8BF13521C5E549000004CE /* MapboxSpeech.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12D21C5E522000004CE /* MapboxSpeech.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C8BF13621C5E549000004CE /* Solar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12B21C5E522000004CE /* Solar.framework */; };
-		8C8BF13721C5E549000004CE /* Solar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12B21C5E522000004CE /* Solar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C8BF13821C5E549000004CE /* Turf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12A21C5E522000004CE /* Turf.framework */; };
-		8C8BF13921C5E549000004CE /* Turf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BF12A21C5E522000004CE /* Turf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CD30951222783C100805E1D /* largeAnimalShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3094D222783C100805E1D /* largeAnimalShelter.png */; };
 		8CD30952222783C100805E1D /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3094E222783C100805E1D /* information.png */; };
 		8CD30953222783C100805E1D /* smallAnimalShelter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3094F222783C100805E1D /* smallAnimalShelter.png */; };
@@ -50,6 +45,13 @@
 		8CD3095C222CC66400805E1D /* BeeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3095B222CC66400805E1D /* BeeNavigation.swift */; };
 		8CD3095E222CC7D100805E1D /* EvacuationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3095D222CC7D100805E1D /* EvacuationRoute.swift */; };
 		8CD30960222CC88000805E1D /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3095F222CC88000805E1D /* Waypoint.swift */; };
+		8CE9D718225EC48B004DB1A6 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D709225EC443004DB1A6 /* Mapbox.framework */; };
+		8CE9D719225EC48B004DB1A6 /* MapboxCoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70E225EC444004DB1A6 /* MapboxCoreNavigation.framework */; };
+		8CE9D71A225EC48B004DB1A6 /* MapboxDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D706225EC443004DB1A6 /* MapboxDirections.framework */; };
+		8CE9D71B225EC48B004DB1A6 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */; };
+		8CE9D71E225EC48B004DB1A6 /* MapboxSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */; };
+		8CE9D71F225EC48B004DB1A6 /* Polyline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D707225EC443004DB1A6 /* Polyline.framework */; };
+		8CE9D720225EC48B004DB1A6 /* Solar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70C225EC444004DB1A6 /* Solar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,16 +74,16 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		8C76B77021C0562E0013D4D3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C4446D121C74E5A009ECCFF /* Mapbox.framework in Embed Frameworks */,
-				8C8BF13321C5E549000004CE /* MapboxMobileEvents.framework in Embed Frameworks */,
-				8C8BF13521C5E549000004CE /* MapboxSpeech.framework in Embed Frameworks */,
-				8C8BF12921C5E4E8000004CE /* Polyline.framework in Embed Frameworks */,
-				8C8BF13921C5E549000004CE /* Turf.framework in Embed Frameworks */,
-				8C8BF13721C5E549000004CE /* Solar.framework in Embed Frameworks */,
+				8C0672F022618A7900E6F38C /* MapboxMobileEvents.framework in Embed Frameworks */,
+				8C0672E622618A7900E6F38C /* Solar.framework in Embed Frameworks */,
+				8C0672E822618A7900E6F38C /* Turf.framework in Embed Frameworks */,
+				8C0672F822618A7900E6F38C /* Polyline.framework in Embed Frameworks */,
+				8C0672EA22618A7900E6F38C /* Mapbox.framework in Embed Frameworks */,
+				8C0672F622618A7900E6F38C /* MapboxSpeech.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,10 +93,9 @@
 /* Begin PBXFileReference section */
 		8C1A6B7D21C751FA00D28F06 /* other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = other.png; sourceTree = "<group>"; };
 		8C1A6B7F21C751FA00D28F06 /* hospital.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hospital.png; sourceTree = "<group>"; };
-		8C4446CF21C74E5A009ECCFF /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 		8C5C4F5C219BB471003E4C02 /* BEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5C4F5F219BB471003E4C02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8C5C4F61219BB471003E4C02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8C5C4F61219BB471003E4C02 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8C5C4F64219BB471003E4C02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C5C4F69219BB473003E4C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C5C4F6C219BB473003E4C02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,16 +108,6 @@
 		8C8BF10621C5BF2E000004CE /* police.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = police.png; sourceTree = "<group>"; };
 		8C8BF10921C5BF30000004CE /* humanShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = humanShelter.png; sourceTree = "<group>"; };
 		8C8BF11621C5C5BD000004CE /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		8C8BF11821C5E0F7000004CE /* MapboxCoreNavigation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxCoreNavigation.framework; path = Carthage/Build/iOS/MapboxCoreNavigation.framework; sourceTree = "<group>"; };
-		8C8BF11B21C5E10D000004CE /* MapboxNavigation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxNavigation.framework; path = Carthage/Build/iOS/MapboxNavigation.framework; sourceTree = "<group>"; };
-		8C8BF11E21C5E116000004CE /* MapboxNavigationNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxNavigationNative.framework; path = Carthage/Build/iOS/MapboxNavigationNative.framework; sourceTree = "<group>"; };
-		8C8BF12521C5E4AB000004CE /* MapboxDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxDirections.framework; path = Carthage/Build/iOS/MapboxDirections.framework; sourceTree = "<group>"; };
-		8C8BF12721C5E4E8000004CE /* Polyline.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Polyline.framework; path = Carthage/Build/iOS/Polyline.framework; sourceTree = "<group>"; };
-		8C8BF12A21C5E522000004CE /* Turf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Turf.framework; path = Carthage/Build/iOS/Turf.framework; sourceTree = "<group>"; };
-		8C8BF12B21C5E522000004CE /* Solar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Solar.framework; path = Carthage/Build/iOS/Solar.framework; sourceTree = "<group>"; };
-		8C8BF12C21C5E522000004CE /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
-		8C8BF12D21C5E522000004CE /* MapboxSpeech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxSpeech.framework; path = Carthage/Build/iOS/MapboxSpeech.framework; sourceTree = "<group>"; };
-		8C97B6D221C5611600193543 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		8CD3094D222783C100805E1D /* largeAnimalShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largeAnimalShelter.png; sourceTree = "<group>"; };
 		8CD3094E222783C100805E1D /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		8CD3094F222783C100805E1D /* smallAnimalShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallAnimalShelter.png; sourceTree = "<group>"; };
@@ -127,6 +118,17 @@
 		8CD3095B222CC66400805E1D /* BeeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeNavigation.swift; sourceTree = "<group>"; };
 		8CD3095D222CC7D100805E1D /* EvacuationRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvacuationRoute.swift; sourceTree = "<group>"; };
 		8CD3095F222CC88000805E1D /* Waypoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
+		8CD59E5E225AF07700864CEE /* Turf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Turf.framework; path = Carthage/Build/iOS/Turf.framework; sourceTree = "<group>"; };
+		8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxSpeech.framework; path = Carthage/Build/iOS/MapboxSpeech.framework; sourceTree = "<group>"; };
+		8CE9D706225EC443004DB1A6 /* MapboxDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxDirections.framework; path = Carthage/Build/iOS/MapboxDirections.framework; sourceTree = "<group>"; };
+		8CE9D707225EC443004DB1A6 /* Polyline.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Polyline.framework; path = Carthage/Build/iOS/Polyline.framework; sourceTree = "<group>"; };
+		8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
+		8CE9D709225EC443004DB1A6 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
+		8CE9D70A225EC443004DB1A6 /* Turf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Turf.framework; path = Carthage/Build/iOS/Turf.framework; sourceTree = "<group>"; };
+		8CE9D70B225EC443004DB1A6 /* MapboxNavigation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxNavigation.framework; path = Carthage/Build/iOS/MapboxNavigation.framework; sourceTree = "<group>"; };
+		8CE9D70C225EC444004DB1A6 /* Solar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Solar.framework; path = Carthage/Build/iOS/Solar.framework; sourceTree = "<group>"; };
+		8CE9D70D225EC444004DB1A6 /* MapboxNavigationNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxNavigationNative.framework; path = Carthage/Build/iOS/MapboxNavigationNative.framework; sourceTree = "<group>"; };
+		8CE9D70E225EC444004DB1A6 /* MapboxCoreNavigation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxCoreNavigation.framework; path = Carthage/Build/iOS/MapboxCoreNavigation.framework; sourceTree = "<group>"; };
 		8CF5638C21A25F7000B47E62 /* BEE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BEE.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,20 +137,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C8BF13021C5E522000004CE /* MapboxMobileEvents.framework in Frameworks */,
-				8C8BF12E21C5E522000004CE /* Turf.framework in Frameworks */,
-				8C8BF12821C5E4E8000004CE /* Polyline.framework in Frameworks */,
-				8C8BF13621C5E549000004CE /* Solar.framework in Frameworks */,
-				8C8BF13221C5E549000004CE /* MapboxMobileEvents.framework in Frameworks */,
-				8C8BF13421C5E549000004CE /* MapboxSpeech.framework in Frameworks */,
-				8C8BF13821C5E549000004CE /* Turf.framework in Frameworks */,
-				8C8BF12621C5E4AB000004CE /* MapboxDirections.framework in Frameworks */,
-				8C8BF12F21C5E522000004CE /* Solar.framework in Frameworks */,
-				8C8BF12221C5E43B000004CE /* MapboxNavigationNative.framework in Frameworks */,
-				8C8BF13121C5E522000004CE /* MapboxSpeech.framework in Frameworks */,
-				8C8BF12321C5E43F000004CE /* MapboxCoreNavigation.framework in Frameworks */,
-				8C8BF12421C5E442000004CE /* MapboxNavigation.framework in Frameworks */,
-				8C4446D021C74E5A009ECCFF /* Mapbox.framework in Frameworks */,
+				8C0672F922618A7900E6F38C /* Turf.framework in Frameworks */,
+				8CE9D718225EC48B004DB1A6 /* Mapbox.framework in Frameworks */,
+				8C0672E522618A7900E6F38C /* Solar.framework in Frameworks */,
+				8C0672F122618A7900E6F38C /* MapboxNavigation.framework in Frameworks */,
+				8CE9D719225EC48B004DB1A6 /* MapboxCoreNavigation.framework in Frameworks */,
+				8C0672E722618A7900E6F38C /* Turf.framework in Frameworks */,
+				8C0672F722618A7900E6F38C /* Polyline.framework in Frameworks */,
+				8CE9D71A225EC48B004DB1A6 /* MapboxDirections.framework in Frameworks */,
+				8CE9D71B225EC48B004DB1A6 /* MapboxMobileEvents.framework in Frameworks */,
+				8C0672F322618A7900E6F38C /* MapboxNavigationNative.framework in Frameworks */,
+				8CE9D71E225EC48B004DB1A6 /* MapboxSpeech.framework in Frameworks */,
+				8CE9D71F225EC48B004DB1A6 /* Polyline.framework in Frameworks */,
+				8C0672F522618A7900E6F38C /* MapboxSpeech.framework in Frameworks */,
+				8C0672EF22618A7900E6F38C /* MapboxMobileEvents.framework in Frameworks */,
+				8CE9D720225EC48B004DB1A6 /* Solar.framework in Frameworks */,
+				8C0672E922618A7900E6F38C /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,15 +176,17 @@
 		8C5C4F53219BB470003E4C02 = {
 			isa = PBXGroup;
 			children = (
-				8C4446CF21C74E5A009ECCFF /* Mapbox.framework */,
-				8C8BF12C21C5E522000004CE /* MapboxMobileEvents.framework */,
-				8C8BF12D21C5E522000004CE /* MapboxSpeech.framework */,
-				8C8BF12B21C5E522000004CE /* Solar.framework */,
-				8C8BF12A21C5E522000004CE /* Turf.framework */,
-				8C8BF12721C5E4E8000004CE /* Polyline.framework */,
-				8C8BF11E21C5E116000004CE /* MapboxNavigationNative.framework */,
-				8C8BF11B21C5E10D000004CE /* MapboxNavigation.framework */,
-				8C8BF11821C5E0F7000004CE /* MapboxCoreNavigation.framework */,
+				8CE9D70C225EC444004DB1A6 /* Solar.framework */,
+				8CD59E5E225AF07700864CEE /* Turf.framework */,
+				8CE9D709225EC443004DB1A6 /* Mapbox.framework */,
+				8CE9D70E225EC444004DB1A6 /* MapboxCoreNavigation.framework */,
+				8CE9D706225EC443004DB1A6 /* MapboxDirections.framework */,
+				8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */,
+				8CE9D70B225EC443004DB1A6 /* MapboxNavigation.framework */,
+				8CE9D70D225EC444004DB1A6 /* MapboxNavigationNative.framework */,
+				8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */,
+				8CE9D707225EC443004DB1A6 /* Polyline.framework */,
+				8CE9D70A225EC443004DB1A6 /* Turf.framework */,
 				8C8BF11621C5C5BD000004CE /* Cartfile */,
 				8C8BF0F921C5B91C000004CE /* Icons */,
 				8C5C4F5E219BB471003E4C02 /* BEE */,
@@ -204,7 +210,7 @@
 			children = (
 				8CF5638C21A25F7000B47E62 /* BEE.entitlements */,
 				8C5C4F5F219BB471003E4C02 /* AppDelegate.swift */,
-				8C5C4F61219BB471003E4C02 /* ViewController.swift */,
+				8C5C4F61219BB471003E4C02 /* MapViewController.swift */,
 				8C5C4F63219BB471003E4C02 /* Main.storyboard */,
 				8C5C4F69219BB473003E4C02 /* Assets.xcassets */,
 				8C5C4F6B219BB473003E4C02 /* LaunchScreen.storyboard */,
@@ -240,8 +246,6 @@
 		8C97B6D121C5611600193543 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C8BF12521C5E4AB000004CE /* MapboxDirections.framework */,
-				8C97B6D221C5611600193543 /* Mapbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,6 +321,9 @@
 					8C5C4F5B219BB470003E4C02 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -425,7 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD3095A222CB5E400805E1D /* LocationPointAnnotation.swift in Sources */,
-				8C5C4F62219BB471003E4C02 /* ViewController.swift in Sources */,
+				8C5C4F62219BB471003E4C02 /* MapViewController.swift in Sources */,
 				8C5C4F60219BB471003E4C02 /* AppDelegate.swift in Sources */,
 				8CD30958222CB56900805E1D /* Enums.swift in Sources */,
 				8CD30960222CC88000805E1D /* Waypoint.swift in Sources */,
@@ -610,8 +617,9 @@
 				DEVELOPMENT_TEAM = Z47QQS76MN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BEE/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -619,7 +627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ginac.evacuate;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unr.cse.ginac.BEE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -637,8 +645,9 @@
 				DEVELOPMENT_TEAM = Z47QQS76MN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BEE/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -646,7 +655,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ginac.evacuate;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unr.cse.ginac.BEE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

@@ -2,27 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>http://bee-server.us-west-1.elasticbeanstalk.com</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoiY3dnaW5hYyIsImEiOiJjanBrNzV0b3MwMGM3NDltbGFkNXRoeGs5In0.IPKWBAfhpSTHopPUrFWGUQ</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Test</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Test</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -36,11 +15,46 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoiY3dnaW5hYyIsImEiOiJjanBrNzV0b3MwMGM3NDltbGFkNXRoeGs5In0.IPKWBAfhpSTHopPUrFWGUQ</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>http://bee-server.us-west-1.elasticbeanstalk.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>
+Prior to an evacuation, BEE will periodically send your location to our servers to enable us to send you notifications about alerts in your area.  This location will not be linked to any personally identifying information, just a unique code your device already generates. 
+
+During an evacuation, BEE will send your location and name to our severs so that emergency managers and loved ones can know your last known location.  This location will be deleted and replaced with "SAFE" once you are finished with navigation.
+
+If you choose “Only While Using the App”, we will not update your location unless the app is open during an emergency situation.  This means you will not receive any notifications about potential danger.
+
+Please choose “Always Allow” so that we can alert you about potential danger.
+
+If you choose “Don’t Allow”, this app will not function correctly.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>During an evacuation, BEE will send your location and name to our severs so that emergency managers and loved ones can know your last known location.  This location will be deleted and replaced with "SAFE" once you are finished with navigation. This app will not function without this authorization.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

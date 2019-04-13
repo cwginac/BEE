@@ -1,4 +1,13 @@
-# Changes to the Mapbox Directions SDK for iOS
+# Changes to MapboxDirections.swift
+
+## v0.27.3
+
+* Fixed compatibility issues with Xcode 10.2 when the SDK is installed using Carthage. ([#363](https://github.com/mapbox/MapboxDirections.swift/pull/363))
+
+## v0.27.2
+
+* Fixed an issue where `Waypoint.separatesLegs` caused the resulting `RouteLeg.source` and `RouteLeg.destination` to have mismatched coordinates and names. ([#358](https://github.com/mapbox/MapboxDirections.swift/pull/358))
+* Fixed an issue where a Directions API or Map Matching API request would fail if a `Waypoint` has `Waypoint.name` set and `Waypoint.separatesLegs` set to `false`. ([#358](https://github.com/mapbox/MapboxDirections.swift/pull/358))
 
 ## v0.27.1
 
