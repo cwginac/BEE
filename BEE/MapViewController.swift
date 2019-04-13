@@ -203,6 +203,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         self.showInstructions()
     }
     
+    @IBAction func report(_ sender: Any) {
+        let alert = UIAlertController(title: "Make A Report", message: "Choose below type of report to make:", preferredStyle: .alert)
+        
+        // Create the actions
+        let fire = UIAlertAction(title: "Visible Flames", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.getReportAdditionalInfo(reportType: ReportType.fire)
+        }
+        let danger = UIAlertAction(title: "Person in Danger", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.getReportAdditionalInfo(reportType: ReportType.danger)
+        }
+        let road = UIAlertAction(title: "Road Blocked", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.getReportAdditionalInfo(reportType: ReportType.roadBlocked)
+        }
+        let other = UIAlertAction(title: "Other", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.getReportAdditionalInfo(reportType: ReportType.other)
+        }
+        
+        alert.addAction(fire)
+        alert.addAction(danger)
+        alert.addAction(road)
+        alert.addAction(other)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func getReportAdditionalInfo(reportType: ReportType) {
+        let alertController = UIAlertController(title: "Additional Information", message: "If safe, please enter in any additional information. Leave empty if none.", preferredStyle: UIAlertController.Style.alert)
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Additional Information"
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
+            let information = alertController.textFields![0] as UITextField
+            
+            self.server.report(viewController: self, type: reportType, info: information.text ?? "")
+        })
+        
+        alertController.addAction(saveAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @IBAction func startNavigation(_ sender: Any) {
         server.navigation.startNavigation(viewController: self)
     }

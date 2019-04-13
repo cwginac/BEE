@@ -52,6 +52,50 @@ class Server {
         
         task.resume()
     }
+    
+    func report(viewController: MapViewController, type: ReportType, info: String) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let locationManager = CLLocationManager()
+        
+        var userToken = ""
+        if (appDelegate.deviceToken != "") {
+            userToken = appDelegate.deviceToken
+        }
+        else {
+            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+        }
+        
+        // prepare json data
+        let location = locationManager.location?.coordinate
+        var dataString = "userId=" + userToken
+        dataString += "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+        dataString += "&type=" + type.rawValue
+        dataString += "&info=" + info
+        dataString += "&evacId=" + viewController.g_evacId
+        
+        // create post request
+        let url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/report")!
+        
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = dataString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+        
+        task.resume()
+    }
 
     func reportSafe(viewController: MapViewController) {
         print("Marking Safe")

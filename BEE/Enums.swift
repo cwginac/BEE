@@ -33,3 +33,10 @@ enum RouteStatus: String {
     case congested
     case closed
 }
+
+enum ReportType: String {
+    case fire
+    case danger
+    case roadBlocked
+    case other
+}
