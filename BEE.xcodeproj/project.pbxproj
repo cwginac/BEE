@@ -9,15 +9,11 @@
 /* Begin PBXBuildFile section */
 		8C0672E522618A7900E6F38C /* Solar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70C225EC444004DB1A6 /* Solar.framework */; };
 		8C0672E622618A7900E6F38C /* Solar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70C225EC444004DB1A6 /* Solar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C0672E722618A7900E6F38C /* Turf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD59E5E225AF07700864CEE /* Turf.framework */; };
 		8C0672E822618A7900E6F38C /* Turf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD59E5E225AF07700864CEE /* Turf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C0672E922618A7900E6F38C /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D709225EC443004DB1A6 /* Mapbox.framework */; };
 		8C0672EA22618A7900E6F38C /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D709225EC443004DB1A6 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C0672EF22618A7900E6F38C /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */; };
 		8C0672F022618A7900E6F38C /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C0672F122618A7900E6F38C /* MapboxNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70B225EC443004DB1A6 /* MapboxNavigation.framework */; };
 		8C0672F322618A7900E6F38C /* MapboxNavigationNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70D225EC444004DB1A6 /* MapboxNavigationNative.framework */; };
-		8C0672F522618A7900E6F38C /* MapboxSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */; };
 		8C0672F622618A7900E6F38C /* MapboxSpeech.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C0672F722618A7900E6F38C /* Polyline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D707225EC443004DB1A6 /* Polyline.framework */; };
 		8C0672F822618A7900E6F38C /* Polyline.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D707225EC443004DB1A6 /* Polyline.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -50,8 +46,6 @@
 		8CE9D71A225EC48B004DB1A6 /* MapboxDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D706225EC443004DB1A6 /* MapboxDirections.framework */; };
 		8CE9D71B225EC48B004DB1A6 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D708225EC443004DB1A6 /* MapboxMobileEvents.framework */; };
 		8CE9D71E225EC48B004DB1A6 /* MapboxSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D705225EC443004DB1A6 /* MapboxSpeech.framework */; };
-		8CE9D71F225EC48B004DB1A6 /* Polyline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D707225EC443004DB1A6 /* Polyline.framework */; };
-		8CE9D720225EC48B004DB1A6 /* Solar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE9D70C225EC444004DB1A6 /* Solar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +102,8 @@
 		8C8BF10621C5BF2E000004CE /* police.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = police.png; sourceTree = "<group>"; };
 		8C8BF10921C5BF30000004CE /* humanShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = humanShelter.png; sourceTree = "<group>"; };
 		8C8BF11621C5C5BD000004CE /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		8CC423FA22BEF5FA00D68E05 /* key west.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "key west.gpx"; sourceTree = "<group>"; };
+		8CC423FB22BEF5FA00D68E05 /* paradise.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = paradise.gpx; sourceTree = "<group>"; };
 		8CD3094D222783C100805E1D /* largeAnimalShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largeAnimalShelter.png; sourceTree = "<group>"; };
 		8CD3094E222783C100805E1D /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		8CD3094F222783C100805E1D /* smallAnimalShelter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallAnimalShelter.png; sourceTree = "<group>"; };
@@ -142,17 +138,11 @@
 				8C0672E522618A7900E6F38C /* Solar.framework in Frameworks */,
 				8C0672F122618A7900E6F38C /* MapboxNavigation.framework in Frameworks */,
 				8CE9D719225EC48B004DB1A6 /* MapboxCoreNavigation.framework in Frameworks */,
-				8C0672E722618A7900E6F38C /* Turf.framework in Frameworks */,
 				8C0672F722618A7900E6F38C /* Polyline.framework in Frameworks */,
 				8CE9D71A225EC48B004DB1A6 /* MapboxDirections.framework in Frameworks */,
 				8CE9D71B225EC48B004DB1A6 /* MapboxMobileEvents.framework in Frameworks */,
 				8C0672F322618A7900E6F38C /* MapboxNavigationNative.framework in Frameworks */,
 				8CE9D71E225EC48B004DB1A6 /* MapboxSpeech.framework in Frameworks */,
-				8CE9D71F225EC48B004DB1A6 /* Polyline.framework in Frameworks */,
-				8C0672F522618A7900E6F38C /* MapboxSpeech.framework in Frameworks */,
-				8C0672EF22618A7900E6F38C /* MapboxMobileEvents.framework in Frameworks */,
-				8CE9D720225EC48B004DB1A6 /* Solar.framework in Frameworks */,
-				8C0672E922618A7900E6F38C /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +166,8 @@
 		8C5C4F53219BB470003E4C02 = {
 			isa = PBXGroup;
 			children = (
+				8CC423FA22BEF5FA00D68E05 /* key west.gpx */,
+				8CC423FB22BEF5FA00D68E05 /* paradise.gpx */,
 				8CE9D70C225EC444004DB1A6 /* Solar.framework */,
 				8CD59E5E225AF07700864CEE /* Turf.framework */,
 				8CE9D709225EC443004DB1A6 /* Mapbox.framework */,
@@ -315,7 +307,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Chris Ginac";
 				TargetAttributes = {
 					8C5C4F5B219BB470003E4C02 = {

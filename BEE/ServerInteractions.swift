@@ -14,20 +14,24 @@ class Server {
     var navigation: BeeNavigation = BeeNavigation()
     
     func updateLocationInBackground() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let locationManager = CLLocationManager()
         
-        var userToken = ""
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        var notificationToken = ""
         if (appDelegate.deviceToken != "") {
-            userToken = appDelegate.deviceToken
+            notificationToken = appDelegate.deviceToken
         }
-        else {
-            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
-        }
+        
+        let userToken = (UIDevice.current.identifierForVendor?.uuidString)!
         
         // prepare json data
         let location = locationManager.location?.coordinate
-        let dataString = "id=" + userToken + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+        var dataString = "id=" + userToken + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+        
+        if (notificationToken != "") {
+            dataString += "&notification_token=" + notificationToken
+        }
         
         // create post request
         let url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/update-location")!
@@ -54,16 +58,9 @@ class Server {
     }
     
     func report(viewController: MapViewController, type: ReportType, info: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let locationManager = CLLocationManager()
         
-        var userToken = ""
-        if (appDelegate.deviceToken != "") {
-            userToken = appDelegate.deviceToken
-        }
-        else {
-            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
-        }
+        let userToken = (UIDevice.current.identifierForVendor?.uuidString)!
         
         // prepare json data
         let location = locationManager.location?.coordinate
@@ -99,15 +96,8 @@ class Server {
 
     func reportSafe(viewController: MapViewController) {
         print("Marking Safe")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        var userToken = ""
-        if (appDelegate.deviceToken != "") {
-            userToken = appDelegate.deviceToken
-        }
-        else {
-            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
-        }
+        let userToken = (UIDevice.current.identifierForVendor?.uuidString)!
         
         // prepare json data
         let dataString = "userId=" + userToken + "&evacId=" + viewController.g_evacId
@@ -139,17 +129,21 @@ class Server {
     func updateLocation(inEvacuation: Bool, viewController: MapViewController) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        var userToken = ""
+        var notificationToken = ""
         if (appDelegate.deviceToken != "") {
-            userToken = appDelegate.deviceToken
+            notificationToken = appDelegate.deviceToken
         }
-        else {
-            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
-        }
+        
+        let userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+
         
         // prepare json data
         let location = viewController.locationManager.location?.coordinate ?? viewController.mapView.userLocation?.coordinate
         var dataString = "id=" + userToken + "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
+        
+        if (notificationToken != "") {
+            dataString += "&notification_token=" + notificationToken
+        }
         
         // create post request
         var url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/update-location")!
@@ -159,6 +153,9 @@ class Server {
             dataString += "&name=" + viewController.defaults.string(forKey: "name")!
             dataString += "&latitude=" + String(format:"%f", (location?.latitude)!) + "&longitude=" + String(format:"%f", (location?.longitude)!)
             dataString += "&evacId=" + viewController.g_evacId;
+            if (notificationToken != "") {
+                dataString += "&notification_token=" + notificationToken
+            }
             url = URL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/evacuation-update-location")!
             print("updating location for evacuation")
         }
@@ -213,8 +210,11 @@ class Server {
     }
 
     func getEvents(viewController: MapViewController) {
+        
+        let userToken = (UIDevice.current.identifierForVendor?.uuidString)!
+        
         // Set the URL the request is being made to.
-        let request = URLRequest(url: NSURL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/get-events?id=" + (UIDevice.current.identifierForVendor?.uuidString)!)! as URL)
+        let request = URLRequest(url: NSURL(string: "http://bee-server.us-west-1.elasticbeanstalk.com/web-service/bee-server/get-events?id=" + userToken)! as URL)
         do {
             // Perform the request
             let response: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
@@ -234,7 +234,7 @@ class Server {
                     var coordinateValues: [CLLocationCoordinate2D] = []
                     let coordinates = alert["boundaryPoints"] as? [Dictionary<String, AnyObject>]
                     for coordinate in coordinates! {
-                        coordinateValues.append(CLLocationCoordinate2DMake(coordinate["latitude"] as! Double, coordinate["longitude"] as! Double))
+                        coordinateValues.append(CLLocationCoordinate2DMake(coordinate["coordinate"]!["latitude"] as! Double, coordinate["coordinate"]!["longitude"] as! Double))
                     }
                     // Must close polygon (to fix bug in MapBox framework where at closer zoom levels, polygons will not close themselves)
                     coordinateValues.append(coordinateValues[0])
@@ -276,15 +276,7 @@ class Server {
     }
     
     func acknowledgeEvacuation(viewController: MapViewController) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        var userToken = ""
-        if (appDelegate.deviceToken != "") {
-            userToken = appDelegate.deviceToken
-        }
-        else {
-            userToken = (UIDevice.current.identifierForVendor?.uuidString)!
-        }
+        let userToken = (UIDevice.current.identifierForVendor?.uuidString)!
         
         // prepare json data
         let dataString = "userId=" + userToken + "&evacId=" + viewController.g_evacId
